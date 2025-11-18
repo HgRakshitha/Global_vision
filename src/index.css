@@ -1,13 +1,220 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ---------- Rich Dark Theme ---------- */
+:root {
+  --bg-1: #031828;
+  --bg-2: #042b3f;
+  --accent: #4fc3f7;
+  --accent-2: #00d4ff;
+  --card: #071827;
+  --muted: #9fbfd0;
+  --glass: rgba(255, 255, 255, 0.03);
+  --glass-2: rgba(79, 195, 247, 0.06);
+  --gold: #e6b860;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+html,
+body,
+#root {
+  height: 100%;
+}
+body {
+  background: linear-gradient(180deg, var(--bg-1), var(--bg-2));
+  color: var(--muted);
+  font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto,
+    "Helvetica Neue", Arial;
+  -webkit-font-smoothing: antialiased;
+  margin: 0;
+  padding: 0;
+}
+
+/* Section layout */
+.section {
+  position: relative;
+  overflow: hidden;
+  padding: 1rem 1rem;
+}
+.section-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 5;
+}
+
+/* Floating background videos/images */
+.bg-media {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 0;
+  pointer-events: none;
+  opacity: 0.66;
+}
+
+/* overlay to ensure readability */
+.overlay-dark {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    180deg,
+    rgba(2, 7, 13, 0.32),
+    rgba(2, 8, 14, 0.6)
+  );
+  z-index: 1;
+}
+
+/* Card style */
+.card {
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.02),
+    rgba(255, 255, 255, 0.01)
+  );
+  border: 1px solid var(--glass-2);
+  border-radius: 18px;
+  box-shadow: 0 14px 40px rgba(2, 10, 20, 0.6);
+  padding: 1.6rem;
+}
+
+.form-panel {
+  border-radius: 20px;
+  padding: 1.25rem;
+  border: 1px solid rgba(255, 255, 255, 0.03);
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.015),
+    rgba(255, 255, 255, 0.01)
+  );
+  box-shadow: 0 20px 60px rgba(7, 31, 61, 0.6);
+}
+
+/* Buttons - floating/popping */
+.btn-primary {
+  display: inline-block;
+  background: linear-gradient(90deg, var(--accent), var(--accent-2));
+  color: #001422;
+  font-weight: 700;
+  padding: 0.66rem 1.6rem;
+  border-radius: 999px;
+  box-shadow: 0 10px 30px rgba(70, 175, 223, 0.14);
+  transition: transform 0.18s, box-shadow 0.18s;
+}
+.btn-primary:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 18px 50px rgba(79, 195, 247, 0.2);
+}
+
+.btn-ghost {
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  color: var(--muted);
+  padding: 0.5rem 1rem;
+  border-radius: 999px;
+  transition: background 0.18s, transform 0.18s;
+}
+.btn-ghost:hover {
+  background: rgba(255, 255, 255, 0.03);
+  transform: translateY(-3px);
+}
+
+/* Inputs */
+.form-input {
+  width: 100%;
+  padding: 0.8rem;
+  border-radius: 10px;
+  background: rgba(0, 0, 0, 0.22);
+  border: 1px solid rgba(255, 255, 255, 0.04);
+  color: #e6f9ff;
+}
+.form-label {
+  color: var(--accent);
+  font-weight: 600;
+  margin-bottom: 0.35rem;
+  display: block;
+}
+
+/* radio-chip */
+.radio-chip {
+  padding: 0.6rem 1rem;
+  border-radius: 12px;
+  cursor: pointer;
+  display: inline-block;
+  border: 1px solid rgba(255, 255, 255, 0.03);
+  color: var(--muted);
+  background: transparent;
+  transition: all 0.18s;
+}
+.radio-chip.active {
+  background: linear-gradient(90deg, var(--accent), var(--accent-2));
+  color: #001422;
+  font-weight: 700;
+  box-shadow: 0 10px 30px rgba(79, 195, 247, 0.12);
+  transform: translateY(-4px);
+}
+
+/* Floating contact group */
+.floating-group {
+  position: fixed;
+  right: 20px;
+  bottom: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  z-index: 60;
+}
+.floating-btn {
+  width: 56px;
+  height: 56px;
+  border-radius: 999px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+  transition: transform 0.18s;
+}
+.floating-btn:hover {
+  transform: translateY(-6px);
+}
+.floating-btn.whatsapp {
+  background: #25d366;
+}
+.floating-btn.email {
+  background: var(--accent);
+}
+
+/* map wrapper */
+.map-wrap {
+  border-radius: 14px;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.03);
+}
+
+/* small helpers */
+.title {
+  color: #e6f9ff;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+.lead {
+  color: var(--muted);
+}
+
+/* responsive */
+@media (max-width: 768px) {
+  .section {
+    padding: 3rem 1rem;
+  }
+  .title {
+    font-size: 1.6rem;
+  }
+}
+.card,
+a,
+button {
+  transition: all 0.25s ease-in-out;
 }

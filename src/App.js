@@ -1,25 +1,59 @@
-import logo from './logo.svg';
-import './App.css';
+import Hero from "./components/Hero";
+import About from "./components/About";
 
-function App() {
+import LeadFormTop from "./components/LeadFormTop";
+import LeadFormBottom from "./components/LeadFormBottom"; // ✅ Added
+import Steps from "./components/Steps";
+import Testimonials from "./components/Testimonials";
+import FAQ from "./components/FAQ";
+import Footer from "./components/Footer";
+import FloatingContact from "./components/FloatingContact";
+import GMap from "./components/GMap";
+
+export default function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="min-h-screen overflow-x-hidden">
+      <Hero />
+
+      <section className="section bg-[var(--navy1)]">
+        <div className="section-content">
+          <About />
+        </div>
+      </section>
+
+      {/* TOP LEAD FORM */}
+      <section className="section bg-[var(--navy1)]">
+        <div className="section-content max-w-3xl mx-auto">
+          <LeadFormTop />
+        </div>
+      </section>
+
+      <section className="section bg-[var(--navy2)]">
+        <div className="section-content">
+          <Steps />
+        </div>
+      </section>
+
+      <section className="section bg-[var(--navy1)]">
+        <div className="section-content">
+          <Testimonials />
+        </div>
+      </section>
+
+      {/* FAQ */}
+      <section className="section bg-[var(--navy4)]">
+        <div className="section-content max-w-4xl mx-auto">
+          <FAQ />
+        </div>
+      </section>
+
+      <section className="section bg-[var(--navy3)]">
+        <div className="section-content max-w-3xl mx-auto">
+          <LeadFormBottom />
+        </div>
+      </section>
+      <Footer />
+      <FloatingContact />
     </div>
   );
 }
-
-export default App;
