@@ -1,86 +1,127 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { FaChevronDown } from "react-icons/fa";
+import faqVideo from "../assets/faq.mp4"; // your video
 
 export default function FAQ() {
   const faqs = [
     {
-      q: "How long does it take to set up a company in UAE?",
-      a: "On average, it takes around 3–5 working days depending on your company type and document requirements.",
+      q: "What services does Global Vision UAE offer?",
+      a: "We provide Mainland, Free Zone, and Offshore company formation, PRO services, visa assistance, trade license processing, documentation support, and corporate bank account setup guidance.",
     },
     {
-      q: "Can foreigners own 100% of the company?",
-      a: "Yes — UAE allows 100% foreign ownership in many business sectors, making it ideal for global entrepreneurs.",
+      q: "How long does it take to start a company in Dubai?",
+      a: "Most businesses are registered within 3–7 working days depending on the jurisdiction. We manage approvals and documentation to ensure a smooth and fast setup.",
     },
     {
-      q: "Do I need to be in the UAE to start the process?",
-      a: "No — most of the setup process can be completed remotely with our expert assistance and digital verification tools.",
+      q: "Can I own 100% of my company in the UAE?",
+      a: "Yes. The UAE permits 100% foreign ownership for most business activities. We help you choose the best structure for your business model.",
+    },
+    {
+      q: "Does Global Vision UAE assist with visas and documentation?",
+      a: "Yes. We handle investor, partner, and employee visas along with Emirates ID, medical tests, and related governmental documentation.",
+    },
+    {
+      q: "Why choose Global Vision UAE for company formation?",
+      a: "We offer transparent pricing, expert guidance, fast processing, and complete support from documentation to banking - making your setup process stress-free.",
+    },
+    {
+      q: "Do you assist with bank account opening?",
+      a: "Yes. We coordinate with major UAE banks, prepare documents, and guide you through compliance requirements for faster approval.",
     },
   ];
 
   const [openIndex, setOpenIndex] = useState(null);
-
-  const toggle = (index) => {
-    setOpenIndex(openIndex === index ? null : index);
-  };
+  const toggle = (index) => setOpenIndex(openIndex === index ? null : index);
 
   return (
-    <section className="relative py-16 px-6 bg-[linear-gradient(180deg,#031c2e,#043b5b)] overflow-hidden">
-      {/* 💫 Glowing Background */}
-      <div className="absolute inset-0">
-        <div className="absolute left-12 top-16 w-64 h-64 bg-[rgba(79,195,247,0.08)] rounded-full blur-3xl animate-pulse"></div>
-        <div className="absolute right-12 bottom-16 w-72 h-72 bg-[rgba(0,224,255,0.07)] rounded-full blur-3xl animate-pulse delay-700"></div>
-      </div>
+    <section id="faq" className="relative py-16 px-6 overflow-hidden">
+      {/* 🌆 Background Video */}
+      <video
+        className="absolute inset-0 w-full h-full object-cover"
+        autoPlay
+        loop
+        muted
+        playsInline
+      >
+        <source src={faqVideo} type="video/mp4" />
+      </video>
 
-      {/* 🌟 Section Title */}
+      {/* Green tinted overlay for readability */}
+      <div className="absolute inset-0 bg-[#0b3d33]/70"></div>
+
+      {/* Glow Elements */}
+      <motion.div
+        animate={{ y: [-20, 20, -20] }}
+        transition={{ duration: 12, repeat: Infinity, ease: "easeInOut" }}
+        className="absolute left-10 top-10 w-64 h-64 bg-[#159E91]/22 rounded-full blur-[130px]"
+      />
+      <motion.div
+        animate={{ y: [20, -20, 20] }}
+        transition={{ duration: 12, repeat: Infinity, ease: "easeInOut" }}
+        className="absolute right-10 bottom-10 w-72 h-72 bg-[#159E91]/22 rounded-full blur-[150px]"
+      />
+
+      {/* Title */}
       <motion.h2
-        initial={{ opacity: 0, y: 20 }}
+        initial={{ opacity: 0, y: 25 }}
         whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.7 }}
+        transition={{ duration: 0.6 }}
         viewport={{ once: true }}
-        className="relative z-10 text-center text-2xl md:text-3xl font-bold text-[#e6f9ff] mb-12"
+        className="relative z-10 text-center text-3xl md:text-4xl font-bold text-white mb-12"
       >
         Frequently Asked Questions
       </motion.h2>
 
-      {/* 🧩 FAQ Accordion */}
+      {/* FAQ LIST */}
       <div className="relative z-10 max-w-3xl mx-auto space-y-5">
         {faqs.map((faq, i) => (
           <motion.div
             key={i}
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 35 }}
             whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: i * 0.15 }}
+            transition={{ duration: 0.45, delay: i * 0.08 }}
             viewport={{ once: true }}
-            className="bg-[rgba(255,255,255,0.05)] border border-[rgba(79,195,247,0.25)] rounded-xl shadow-[0_0_20px_rgba(79,195,247,0.1)] hover:shadow-[0_0_25px_rgba(79,195,247,0.25)] backdrop-blur-sm transition-all duration-300"
+            whileHover={{
+              scale: 1.02,
+              boxShadow: "0 16px 40px rgba(21,158,145,0.35)",
+            }}
+            className="bg-white/90 backdrop-blur-lg rounded-xl 
+                       border border-[#159E91]/30 
+                       shadow-[0_8px_24px_rgba(0,0,0,0.25)]
+                       transition-all duration-300"
           >
-            {/* Question Header */}
+            {/* Question */}
             <button
               onClick={() => toggle(i)}
-              className="w-full flex justify-between items-center px-6 py-4 text-left focus:outline-none"
+              className="w-full flex justify-between items-center px-6 py-5 text-left"
             >
-              <span className="text-[#e6f9ff] font-medium text-base md:text-lg">
+              <span className="text-[#063b2e] font-semibold text-lg">
                 {faq.q}
               </span>
+
               <motion.span
-                animate={{ rotate: openIndex === i ? 180 : 0 }}
-                transition={{ duration: 0.3 }}
-                className="text-[#4fc3f7]"
+                animate={{
+                  rotate: openIndex === i ? 180 : 0,
+                  scale: openIndex === i ? 1.2 : 1,
+                }}
+                transition={{ duration: 0.25 }}
+                className="text-[#159E91]"
               >
                 <FaChevronDown />
               </motion.span>
             </button>
 
-            {/* Answer Section */}
+            {/* Answer */}
             <AnimatePresence>
               {openIndex === i && (
                 <motion.div
-                  key="content"
+                  key="answer"
                   initial={{ opacity: 0, height: 0 }}
                   animate={{ opacity: 1, height: "auto" }}
                   exit={{ opacity: 0, height: 0 }}
-                  transition={{ duration: 0.4 }}
-                  className="px-6 pb-4 text-[#b8e2f2] text-sm md:text-base leading-relaxed"
+                  transition={{ duration: 0.35, ease: "easeInOut" }}
+                  className="px-6 pb-5 text-[#055246] text-sm md:text-base leading-relaxed"
                 >
                   {faq.a}
                 </motion.div>

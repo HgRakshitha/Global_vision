@@ -1,6 +1,7 @@
-import pkgVid from "../assets/packages.mp4";
+import { motion } from "framer-motion";
+import bgImg from "../assets/business-to-business.png";
 
-export default function Packages() {
+export default function About() {
   const pkgs = [
     {
       title: "Free Zone License",
@@ -20,78 +21,104 @@ export default function Packages() {
   ];
 
   return (
-    <section
-      id="packages"
-      className="relative overflow-hidden flex flex-col items-center justify-center py-16 px-8 text-center"
-    >
-      {/* 🎥 Background Video */}
-      <video
-        className="absolute inset-0 w-full h-full object-cover"
-        autoPlay
-        loop
-        muted
-        playsInline
+    <section id="about" className="relative py-16 px-6 overflow-hidden">
+      {/* 🎥 ANIMATED BACKGROUND IMAGE */}
+      <motion.img
+        src={bgImg}
+        alt="Business Background"
+        className="absolute inset-0 w-full h-full object-cover opacity-80"
+        initial={{ scale: 1.15 }}
+        animate={{ scale: 1 }}
+        transition={{
+          duration: 20,
+          repeat: Infinity,
+          repeatType: "reverse",
+        }}
+      />
+      <motion.div
+        className="absolute inset-0 bg-[#f4fffb]/60 backdrop-blur-[2px]"
+        animate={{
+          opacity: [0.6, 0.72, 0.6],
+          x: [-10, 10, -10],
+          y: [-10, 10, -10],
+        }}
+        transition={{
+          duration: 12,
+          repeat: Infinity,
+          ease: "easeInOut",
+        }}
+      />
+      <motion.div
+        animate={{ y: [-20, 20, -20] }}
+        transition={{ duration: 14, repeat: Infinity }}
+        className="absolute left-10 top-8 w-60 h-60 bg-[#159E91]/25 blur-[130px] rounded-full"
+      />
+
+      <motion.div
+        animate={{ y: [20, -25, 20] }}
+        transition={{ duration: 14, repeat: Infinity }}
+        className="absolute right-10 bottom-8 w-72 h-72 bg-[#5fe5cc]/25 blur-[150px] rounded-full"
+      />
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6 }}
+        viewport={{ once: true }}
+        className="relative z-10 text-center mb-12"
       >
-        <source src={pkgVid} type="video/mp4" />
-      </video>
+        <h2 className="text-2xl md:text-4xl font-bold text-[#063d2e] mb-3">
+          Choose Your Ideal Business Setup Plan
+        </h2>
+        <p className="text-[#2c6f61] text-base md:text-lg font-medium max-w-2xl mx-auto">
+          Pick a package tailored to your business goals and start your UAE
+          journey.
+        </p>
+      </motion.div>
+      <div className="relative z-10 grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+        {pkgs.map((p, i) => (
+          <motion.div
+            key={i}
+            initial={{ opacity: 0, y: 25 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            whileHover={{
+              scale: 1.06,
+              y: -8,
+              boxShadow:
+                "0 18px 45px rgba(21,158,145,0.35), 0 8px 25px rgba(0,0,0,0.12)",
+            }}
+            transition={{ duration: 0.35 }}
+            className="bg-white/75 backdrop-blur-md p-8 rounded-2xl 
+           shadow-[0_12px_30px_rgba(0,0,0,0.15)]
+           border border-[#159E91]/40 transition-all 
+           flex flex-col justify-between min-h-[380px]"
+          >
+            <div>
+              <h3 className="text-[#063d2e] text-xl font-semibold mb-2">
+                {p.title}
+              </h3>
+              <p className="text-[#159E91] text-lg font-bold mb-4">{p.price}</p>
 
-      {/* 🩵 Overlay for readability */}
-      <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(3,18,37,0.6),rgba(3,18,37,0.9))]"></div>
-
-      {/* ✨ Content Wrapper */}
-      <div className="relative z-10 max-w-6xl mx-auto w-full">
-        {/* Title & Subtitle */}
-        <div className="mb-12">
-          <h2 className="text-2xl md:text-4xl font-bold text-[#e6f9ff] mb-3">
-            Choose Your Ideal Business Setup Plan
-          </h2>
-          <p className="text-[#b8e2f2] text-lg md:text-xl leading-relaxed">
-            Pick a package tailored to your business goals and start your UAE
-            journey today.
-          </p>
-        </div>
-
-        {/* 💼 Package Cards */}
-        <div className="grid md:grid-cols-3 gap-8 mt-8">
-          {pkgs.map((p, i) => (
-            <div
-              key={i}
-              className="group relative bg-[rgba(255,255,255,0.06)] backdrop-blur-sm border border-[rgba(79,195,247,0.25)] rounded-2xl p-8 flex flex-col justify-between shadow-[0_0_25px_rgba(79,195,247,0.15)] transition-all duration-300 hover:scale-[1.04] hover:shadow-[0_0_35px_rgba(79,195,247,0.3)]"
-            >
-              {/* Title & Price */}
-              <div className="mb-6">
-                <h3 className="text-xl font-semibold text-[#e0f7fa] mb-2">
-                  {p.title}
-                </h3>
-                <div className="text-[#4fc3f7] font-bold text-lg">
-                  {p.price}
-                </div>
-              </div>
-
-              {/* Features */}
-              <ul className="mb-8 text-[#cfeff8] text-sm leading-relaxed space-y-2 text-left">
+              <ul className="text-[#063d2e] text-sm space-y-2 text-left mb-6">
                 {p.bullets.map((b, idx) => (
                   <li key={idx} className="flex items-start gap-2">
-                    <span className="text-[#4fc3f7] text-lg">•</span> {b}
+                    <span className="text-[#159E91] text-lg">•</span> {b}
                   </li>
                 ))}
               </ul>
-
-              {/* Get Started Button */}
-              <a
-                href="#leadform-top"
-                className="block w-full py-3 rounded-full bg-gradient-to-r from-[#00bcd4] to-[#4fc3f7] text-[#031c2e] font-bold text-base shadow-md transition-all hover:shadow-[0_0_25px_rgba(79,195,247,0.4)] hover:scale-[1.05]"
-              >
-                Get Started
-              </a>
             </div>
-          ))}
-        </div>
-      </div>
 
-      {/* 🌐 Decorative glowing shapes */}
-      <div className="absolute left-10 top-1/3 w-64 h-64 bg-[rgba(79,195,247,0.08)] rounded-full blur-3xl animate-pulse"></div>
-      <div className="absolute right-10 bottom-1/4 w-72 h-72 bg-[rgba(0,224,255,0.07)] rounded-full blur-3xl animate-pulse delay-700"></div>
+            <a
+              href="#lead-form-hero"
+              className="mt-auto inline-block bg-[#159E91] text-white font-bold 
+             py-3 px-6 rounded-full shadow-md hover:scale-105 
+             transition-all duration-300 text-center"
+            >
+              Get Started
+            </a>
+          </motion.div>
+        ))}
+      </div>
     </section>
   );
 }

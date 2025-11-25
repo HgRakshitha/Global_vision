@@ -31,68 +31,68 @@ export default function Steps() {
   return (
     <section
       id="steps"
-      className="relative py-14 px-6 bg-[linear-gradient(180deg,#031c2e,#043b5b)] overflow-hidden"
+      className="relative py-16 px-6 bg-[linear-gradient(180deg,#f4fffb,#eafff6)] overflow-hidden"
     >
-      {/* ✨ Background Glow (subtle) */}
-      <div className="absolute inset-0">
-        <div className="absolute left-12 top-10 w-56 h-56 bg-[rgba(79,195,247,0.08)] rounded-full blur-3xl animate-pulse"></div>
-        <div className="absolute right-12 bottom-10 w-72 h-72 bg-[rgba(0,224,255,0.07)] rounded-full blur-3xl animate-pulse delay-700"></div>
-      </div>
+      {/* Background glows */}
+      <div className="absolute left-10 top-8 w-60 h-60 bg-[#159E91]/20 blur-[130px] rounded-full"></div>
+      <div className="absolute right-10 bottom-8 w-72 h-72 bg-[#5fe5cc]/20 blur-[150px] rounded-full"></div>
 
-      {/* 🌟 Heading */}
+      {/* Heading */}
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6 }}
         viewport={{ once: true }}
-        className="relative z-10 text-center mb-10"
+        className="relative z-10 text-center mb-12"
       >
-        <h2 className="text-xl md:text-3xl font-bold text-[#e6f9ff] mb-2">
+        <h2 className="text-2xl md:text-4xl font-bold text-[#063d2e] mb-3">
           Get 100% Ownership of Your UAE Business in 6 Steps
         </h2>
-        <p className="text-[#b8e2f2] text-sm md:text-base max-w-2xl mx-auto">
+        <p className="text-[#2c6f61] text-base md:text-lg font-medium max-w-2xl mx-auto">
           Simplified process - efficient, transparent, and fast.
         </p>
       </motion.div>
 
-      {/* 🔹 Steps Grid */}
-      <div className="relative z-10 grid md:grid-cols-3 gap-5 max-w-6xl mx-auto">
+      {/* Steps Grid */}
+      <div className="relative z-10 grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
         {steps.map((s, i) => (
           <motion.div
             key={i}
-            initial={{ opacity: 0, y: 15 }}
+            initial={{ opacity: 0, y: 25 }}
             whileInView={{ opacity: 1, y: 0 }}
-            whileHover={{ scale: 1.04 }}
-            transition={{ duration: 0.3 }}
             viewport={{ once: true }}
-            className="relative bg-[rgba(255,255,255,0.05)] border border-[rgba(79,195,247,0.2)] rounded-xl p-6 text-center shadow-[0_0_20px_rgba(79,195,247,0.1)] backdrop-blur-sm hover:shadow-[0_0_30px_rgba(79,195,247,0.2)] transition-all"
+            whileHover={{
+              scale: 1.07,
+              y: -8,
+              boxShadow:
+                "0 18px 45px rgba(21,158,145,0.35), 0 6px 20px rgba(0,0,0,0.15)",
+            }}
+            transition={{ duration: 0.35 }}
+            className="bg-[#159E91] p-8 rounded-2xl shadow-[0_12px_30px_rgba(0,0,0,0.15)] border border-[#159E91] text-center transition-all"
           >
-            {/* 🔢 Step Number */}
-            <div className="flex justify-center mb-3">
-              <motion.div
-                animate={{
-                  boxShadow: [
-                    "0 0 10px rgba(79,195,247,0.3)",
-                    "0 0 20px rgba(79,195,247,0.5)",
-                    "0 0 10px rgba(79,195,247,0.3)",
-                  ],
-                }}
-                transition={{
-                  duration: 3,
-                  repeat: Infinity,
-                  ease: "easeInOut",
-                }}
-                className="w-10 h-10 flex items-center justify-center rounded-full bg-gradient-to-br from-[#00bcd4] to-[#4fc3f7] text-[#031c2e] text-base font-bold shadow-[0_0_10px_rgba(79,195,247,0.3)]"
-              >
-                {i + 1}
-              </motion.div>
-            </div>
+            {/* Step Number */}
+            <motion.div
+              animate={{
+                boxShadow: [
+                  "0 0 10px rgba(255,255,255,0.35)",
+                  "0 0 22px rgba(255,255,255,0.65)",
+                  "0 0 10px rgba(255,255,255,0.35)",
+                ],
+              }}
+              transition={{ duration: 3, repeat: Infinity }}
+              className="w-12 h-12 mx-auto mb-4 flex items-center justify-center rounded-full 
+                         bg-white text-[#159E91] font-extrabold text-lg shadow-md"
+            >
+              {i + 1}
+            </motion.div>
 
-            {/* 📋 Step Text */}
-            <h3 className="text-base font-semibold text-[#e6f9ff] mb-1">
+            {/* Text */}
+            <h3 className="text-white text-lg md:text-xl font-semibold mb-2">
               {s.title}
             </h3>
-            <p className="text-[#b8e2f2] text-xs leading-relaxed">{s.desc}</p>
+            <p className="text-white/95 text-sm md:text-base font-medium leading-relaxed">
+              {s.desc}
+            </p>
           </motion.div>
         ))}
       </div>

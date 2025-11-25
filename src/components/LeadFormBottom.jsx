@@ -2,7 +2,6 @@ import { useState } from "react";
 import { motion } from "framer-motion";
 import GMap from "./GMap";
 import { FaUser, FaEnvelope, FaPhone, FaBusinessTime } from "react-icons/fa";
-import bgVideo from "../assets/35344-405897623_medium.mp4";
 
 export default function LeadFormBottom() {
   const [form, setForm] = useState({
@@ -24,72 +23,56 @@ export default function LeadFormBottom() {
 
   const floatPulse = {
     animate: {
-      y: [0, -10, 0],
-      scale: [1, 1.012, 1],
+      y: [0, -6, 0],
+      scale: [1, 1.01, 1],
       boxShadow: [
-        "0 0 20px rgba(0,180,255,0.2)",
-        "0 0 28px rgba(0,180,255,0.3)",
-        "0 0 20px rgba(0,180,255,0.2)",
+        "0 0 16px rgba(95,229,204,0.25)",
+        "0 0 24px rgba(95,229,204,0.35)",
+        "0 0 16px rgba(95,229,204,0.25)",
       ],
-      transition: {
-        duration: 6,
-        repeat: Infinity,
-        ease: "easeInOut",
-      },
+      transition: { duration: 5, repeat: Infinity, ease: "easeInOut" },
     },
   };
 
   return (
-    <section className="relative py-14 px-6 overflow-hidden">
-      {/* Blue Video Background */}
-      <video
-        src={bgVideo}
-        autoPlay
-        loop
-        muted
-        playsInline
-        className="absolute inset-0 w-full h-full object-cover 
-        brightness-[0.45] saturate-[1.4] hue-rotate-[190deg]"
-      />
-
-      <div className="absolute inset-0 bg-[rgba(9,35,52,0.55)] backdrop-blur-[2px]"></div>
+    <section className="relative py-14 px-6 bg-[#051625] overflow-hidden">
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,_rgba(95,229,204,0.06),transparent_70%)]" />
 
       <div className="relative z-10 max-w-6xl mx-auto grid lg:grid-cols-2 gap-10 items-start">
-        {/* LEFT — SMALLER FORM */}
+        {/* LEFT FORM */}
         <motion.div
           variants={floatPulse}
           animate="animate"
-          className="bg-[rgba(18,52,71,0.55)]
-            border border-[rgba(144,224,255,0.35)]
-            backdrop-blur-xl p-8 rounded-2xl"
+          className="bg-[#0A2235]/95 border border-[rgba(95,229,204,0.35)]
+                     backdrop-blur-xl p-8 rounded-2xl"
         >
-          <h2 className="text-2xl font-semibold text-cyan-200">
+          <h2 className="text-2xl font-semibold text-white">
             Request a Consultation
           </h2>
-
-          <p className="text-gray-200 text-sm mt-2 mb-6">
-            One of our specialists will contact you shortly.
+          <p className="text-[#cfd7df] text-sm mt-2 mb-7">
+            One of our business setup specialists will contact you shortly.
           </p>
 
           <form onSubmit={handleSubmit} className="space-y-5">
             <div>
-              <label className="text-gray-100 text-sm mb-2 block flex items-center gap-2">
-                <FaUser className="text-cyan-300" /> Full Name
+              <label className="text-[#e5edf5] text-sm mb-2 block flex items-center gap-2">
+                <FaUser className="text-[#5FE5CC]" /> Full Name
               </label>
               <input
+                type="text"
                 name="name"
                 required
                 value={form.name}
                 onChange={handleChange}
-                className="w-full p-3 rounded-lg bg-[rgba(4,28,45,0.6)]
-                border border-[rgba(144,224,255,0.3)] text-white"
-                placeholder="Enter your name"
+                placeholder="Enter your full name"
+                className="w-full p-3 bg-[#051625]/70 border border-[rgba(95,229,204,0.4)]
+                           text-white rounded-lg focus:outline-none focus:border-[#5FE5CC]"
               />
             </div>
 
             <div>
-              <label className="text-gray-100 text-sm mb-2 block flex items-center gap-2">
-                <FaEnvelope className="text-cyan-300" /> Email
+              <label className="text-[#e5edf5] text-sm mb-2 block flex items-center gap-2">
+                <FaEnvelope className="text-[#5FE5CC]" /> Email Address
               </label>
               <input
                 type="email"
@@ -97,15 +80,15 @@ export default function LeadFormBottom() {
                 required
                 value={form.email}
                 onChange={handleChange}
-                className="w-full p-3 rounded-lg bg-[rgba(4,28,45,0.6)]
-                border border-[rgba(144,224,255,0.3)] text-white"
                 placeholder="Enter your email"
+                className="w-full p-3 bg-[#051625]/70 border border-[rgba(95,229,204,0.4)]
+                           text-white rounded-lg focus:outline-none focus:border-[#5FE5CC]"
               />
             </div>
 
             <div>
-              <label className="text-gray-100 text-sm mb-2 block flex items-center gap-2">
-                <FaPhone className="text-cyan-300" /> Phone
+              <label className="text-[#e5edf5] text-sm mb-2 block flex items-center gap-2">
+                <FaPhone className="text-[#5FE5CC]" /> Phone Number
               </label>
               <input
                 type="tel"
@@ -113,16 +96,16 @@ export default function LeadFormBottom() {
                 required
                 value={form.phone}
                 onChange={handleChange}
-                className="w-full p-3 rounded-lg bg-[rgba(4,28,45,0.6)]
-                border border-[rgba(144,224,255,0.3)] text-white"
                 placeholder="+971 5x xxx xxxx"
+                className="w-full p-3 bg-[#051625]/70 border border-[rgba(95,229,204,0.4)]
+                           text-white rounded-lg focus:outline-none focus:border-[#5FE5CC]"
               />
             </div>
 
             <div>
-              <label className="text-gray-100 text-sm mb-3 flex items-center gap-2">
-                <FaBusinessTime className="text-cyan-300" /> When do you plan to
-                start?
+              <label className="text-[#e5edf5] text-sm mb-3 block flex items-center gap-2">
+                <FaBusinessTime className="text-[#5FE5CC]" /> How soon do you
+                plan to start?
               </label>
 
               <div className="grid sm:grid-cols-3 gap-3">
@@ -130,11 +113,11 @@ export default function LeadFormBottom() {
                   <label
                     key={option}
                     className={`cursor-pointer text-center py-3 rounded-lg border text-sm
-                    ${
-                      form.plan === option
-                        ? "bg-cyan-200 text-black border-cyan-300"
-                        : "bg-[rgba(4,28,45,0.5)] text-gray-200 border-[rgba(144,224,255,0.25)] hover:bg-[rgba(13,47,66,0.6)]"
-                    }`}
+                      ${
+                        form.plan === option
+                          ? "bg-[#21C29A] text-[#051625] border-[#5FE5CC]"
+                          : "bg-[#051625]/70 text-[#e5edf5] border-[rgba(95,229,204,0.4)] hover:bg-[#0b2636]"
+                      }`}
                   >
                     <input
                       type="radio"
@@ -152,15 +135,15 @@ export default function LeadFormBottom() {
 
             <button
               type="submit"
-              className="w-full bg-cyan-300 text-black py-3 rounded-lg
-              font-semibold hover:bg-cyan-200"
+              className="w-full bg-[#21C29A] text-white py-3 rounded-lg font-semibold 
+                         hover:bg-[#1AA97F] transition"
             >
               Submit
             </button>
           </form>
         </motion.div>
 
-        {/* RIGHT — SMALLER MAP */}
+        {/* RIGHT MAP */}
         <motion.div variants={floatPulse} animate="animate">
           <GMap />
         </motion.div>

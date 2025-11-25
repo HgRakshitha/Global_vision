@@ -1,111 +1,261 @@
+import { motion } from "framer-motion";
+import logo from "../assets/logo.webp";
+import {
+  FaPhone,
+  FaWhatsapp,
+  FaEnvelope,
+  FaMapMarkerAlt,
+  FaFacebookF,
+  FaInstagram,
+  FaLinkedinIn,
+} from "react-icons/fa";
+import { useState } from "react";
+
 export default function Footer() {
+  const fadeUp = {
+    hidden: { opacity: 0, y: 30 },
+    visible: { opacity: 1, y: 0 },
+  };
+
+  const [selectedPlan, setSelectedPlan] = useState("");
+  const [submittedFooter, setSubmittedFooter] = useState(false);
+  const year = new Date().getFullYear();
+
   return (
-    <footer className="bg-[#02101e] border-t border-cyan-300/10 py-8">
-      <div className="max-w-7xl mx-auto px-6">
-        <div className="grid md:grid-cols-4 items-start gap-6 text-gray-300 text-sm">
-          <div>
-            <h3 className="text-cyan-300 font-semibold text-lg mb-2">
-              Global Vision UAE
-            </h3>
-            <p className="leading-snug">
-              Fast, compliant mainland & free zone company formation in the UAE.
-            </p>
-          </div>
-          <div>
-            <h4 className="text-cyan-200 font-semibold text-base mb-2">
-              Quick Links
-            </h4>
-            <ul className="space-y-1">
-              <li>
-                <a href="#packages" className="hover:text-cyan-300">
-                  Packages
-                </a>
-              </li>
-              <li>
-                <a href="#steps" className="hover:text-cyan-300">
-                  Setup Process
-                </a>
-              </li>
-              <li>
-                <a href="#leadform-top" className="hover:text-cyan-300">
-                  Consultation
-                </a>
-              </li>
-              <li>
-                <a href="#faq" className="hover:text-cyan-300">
-                  FAQ
-                </a>
-              </li>
-            </ul>
-          </div>
-          <div>
-            <h4 className="text-cyan-200 font-semibold text-base mb-2">
-              Contact
-            </h4>
-            <p>📍 Downtown Dubai</p>
-            <p className="mt-1">
-              📧{" "}
-              <a
-                href="mailto:info@globalvisionuae.com"
-                className="hover:text-cyan-300"
+    <motion.footer
+      initial={{ opacity: 0 }}
+      whileInView={{ opacity: 1 }}
+      transition={{ duration: 1 }}
+      className="relative bg-[#051a16] pt-16 pb-10 border-t border-[#0b463b] overflow-hidden"
+    >
+      {/* Floating Animated Glows */}
+      <motion.div
+        animate={{ y: [-30, 30, -30], opacity: [0.25, 0.4, 0.25] }}
+        transition={{ duration: 12, repeat: Infinity }}
+        className="absolute left-0 top-10 w-80 h-80 bg-[#20e0bc]/15 blur-[160px] rounded-full"
+      />
+      <motion.div
+        animate={{ y: [30, -30, 30], opacity: [0.25, 0.4, 0.25] }}
+        transition={{ duration: 12, repeat: Infinity }}
+        className="absolute right-0 bottom-10 w-80 h-80 bg-[#168f7a]/20 blur-[160px] rounded-full"
+      />
+
+      <div className="relative z-10 max-w-7xl mx-auto px-6 grid lg:grid-cols-3 gap-12 text-sm">
+        <motion.div
+          variants={fadeUp}
+          initial="hidden"
+          whileInView="visible"
+          transition={{ duration: 0.6 }}
+          className="flex flex-col justify-between hover:scale-[1.01] transition-transform"
+        >
+          <div className="space-y-5">
+            <motion.img
+              src={logo}
+              alt="Global Vision UAE"
+              className="w-44 md:w-52 brightness-95"
+              initial={{ opacity: 0, y: -20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.7 }}
+            />
+
+            {[
+              { icon: <FaPhone />, text: "+971 52 193 4887" },
+              { icon: <FaWhatsapp />, text: "+971 50 419 3507 (WhatsApp)" },
+              { icon: <FaEnvelope />, text: "info@globalvisionuae.com" },
+            ].map((c, i) => (
+              <motion.p
+                key={i}
+                whileHover={{ scale: 1.05, x: 4 }}
+                className="flex items-center gap-2 text-[#dff8f2] cursor-default"
               >
-                info@globalvisionuae.com
-              </a>
-            </p>
-            <p className="mt-1">
-              📞{" "}
-              <a href="tel:+9714 579 3444" className="hover:text-cyan-300">
-                +9714 579 3444
-              </a>
-            </p>
+                <span className="text-[#1cc7ac] text-lg">{c.icon}</span>
+                {c.text}
+              </motion.p>
+            ))}
+
+            <motion.p
+              whileHover={{ scale: 1.03, x: 4 }}
+              className="flex items-start gap-2 text-[#dff8f2] leading-snug max-w-[260px]"
+            >
+              <FaMapMarkerAlt className="text-[#1cc7ac] mt-[2px]" />
+              Office 205, Ontario Tower, Business Bay, Dubai, UAE
+            </motion.p>
           </div>
 
-          <div>
-            <h4 className="text-cyan-200 font-semibold text-base mb-2">
-              Legal
-            </h4>
-            <ul className="space-y-1">
-              <li>
-                <a href="#" className="hover:text-cyan-300">
-                  Privacy Policy
-                </a>
-              </li>
-              <li>
-                <a href="#" className="hover:text-cyan-300">
-                  Terms & Conditions
-                </a>
-              </li>
-            </ul>
+          <div className="flex items-center gap-3 mt-6">
+            {[
+              {
+                icon: <FaWhatsapp />,
+                link: "https://wa.me/971504193507",
+                target: "_blank",
+              },
+              {
+                icon: <FaFacebookF />,
+                link: "https://www.facebook.com/GlobalvisionUAE",
+                target: "_blank",
+              },
+              {
+                icon: <FaInstagram />,
+                link: "https://www.instagram.com/globalvision.ae/",
+                target: "_blank",
+              },
+              {
+                icon: <FaLinkedinIn />,
+                link: "https://www.linkedin.com/company/global-vision-business-hub/",
+                target: "_blank",
+              },
+            ].map((item, i) => (
+              <motion.a
+                key={i}
+                href={item.link}
+                target="_blank"
+                rel="noreferrer"
+                whileHover={{ scale: 1.25, y: -5, rotate: 2 }}
+                transition={{ type: "spring", stiffness: 220 }}
+                className="w-9 h-9 flex items-center justify-center rounded-full text-white shadow-lg bg-[#1cc7ac] hover:shadow-[0_0_18px_#1cc7ac]"
+              >
+                {item.icon}
+              </motion.a>
+            ))}
+          </div>
+        </motion.div>
 
-            <h4 className="text-cyan-200 font-semibold text-base mt-4 mb-2">
-              Follow Us
-            </h4>
-            <div className="flex gap-3">
-              <a
-                href="https://www.facebook.com/GlobalvisionUAE"
-                className="hover:text-cyan-300"
-              >
-                Facebook
-              </a>
-              <a
-                href="https://www.instagram.com/globalvision.ae/?igsh=Z2gwb21pZmw0dDlt#"
-                className="hover:text-cyan-300"
-              >
-                Instagram
-              </a>
-              <a
-                href="https://www.linkedin.com/company/global-vision-business-hub/"
-                className="hover:text-cyan-300"
-              >
-                LinkedIn
-              </a>
+        <motion.div
+          variants={fadeUp}
+          initial="hidden"
+          whileInView="visible"
+          transition={{ duration: 0.6, delay: 0.1 }}
+          className="flex flex-col justify-between"
+        >
+          <motion.h3
+            whileInView={{ opacity: 1, x: 0 }}
+            initial={{ opacity: 0, x: -20 }}
+            transition={{ duration: 0.6 }}
+            className="text-[#1cc7ac] font-semibold mb-3"
+          >
+            Our Dubai Office
+          </motion.h3>
+
+          <motion.div
+            whileHover={{
+              scale: 1.02,
+              boxShadow: "0 0 25px rgba(28,199,172,0.35)",
+            }}
+            transition={{ duration: 0.4 }}
+            className="rounded-xl overflow-hidden border border-white shadow-[0_8px_26px_rgba(255,255,255,0.2)] bg-[#07221d] h-[300px]"
+          >
+            <iframe
+              width="100%"
+              height="100%"
+              className="brightness-95 contrast-110"
+              title="Dubai Office Map"
+              loading="lazy"
+              style={{ border: 0 }}
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3609.4258709838493!2d55.2731483150116!3d25.197197783893197!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3e5f43341f48687d%3A0x7f8b302a1a458943!2sDowntown%20Dubai!5e0!3m2!1sen!2sae!4v1686571234567"
+            ></iframe>
+          </motion.div>
+        </motion.div>
+
+        {/* FORM COLUMN */}
+        <motion.div
+          variants={fadeUp}
+          initial="hidden"
+          whileInView="visible"
+          transition={{ duration: 0.6, delay: 0.2 }}
+          className="flex flex-col justify-between"
+        >
+          <motion.h3
+            whileInView={{ opacity: 1, x: 0 }}
+            initial={{ opacity: 0, x: 20 }}
+            transition={{ duration: 0.6 }}
+            className="text-[#1cc7ac] font-semibold mb-3"
+          >
+            Start Your Business
+          </motion.h3>
+
+          <form
+            className="space-y-3"
+            onSubmit={(e) => {
+              e.preventDefault();
+              setSubmittedFooter(true);
+
+              setTimeout(() => {
+                window.open(
+                  "https://wa.me/971504193507",
+                  "_blank",
+                  "noreferrer"
+                );
+              }, 2000);
+            }}
+          >
+            {/* Inputs */}
+            {[
+              "Your Name",
+              "Your Email",
+              "Your Phone",
+              "What business do you want to start?",
+            ].map((ph, i) => (
+              <motion.input
+                key={i}
+                placeholder={ph}
+                whileFocus={{ scale: 1.02 }}
+                className="w-full p-2.5 text-xs bg-[#07221d] border border-white text-white rounded-md 
+                           placeholder:text-[#bcefe5] focus:border-white outline-none"
+              />
+            ))}
+
+            {/* Time Options */}
+            <div className="grid grid-cols-3 gap-2">
+              {["Immediately", "1 Month", "Later"].map((label) => (
+                <motion.button
+                  key={label}
+                  type="button"
+                  whileHover={{ scale: 1.07 }}
+                  onClick={() => setSelectedPlan(label)}
+                  className={`p-2 text-[10px] rounded-md border transition 
+                    ${
+                      selectedPlan === label
+                        ? "bg-[#1cc7ac] text-white border-white"
+                        : "bg-[#07221d] text-white border-white"
+                    }`}
+                >
+                  {label}
+                </motion.button>
+              ))}
             </div>
-          </div>
-        </div>
-        <div className="text-center text-gray-500 text-xs mt-6">
-          © {new Date().getFullYear()} Global Vision UAE. All rights reserved.
-        </div>
+
+            {/* Submit */}
+            <motion.button
+              whileHover={{ scale: 1.08 }}
+              className="w-full py-2.5 bg-[#1cc7ac] text-white font-bold text-xs rounded-md 
+                         shadow-lg hover:bg-[#19b49a] hover:shadow-[0_0_20px_#1cc7ac]"
+            >
+              SUBMIT
+            </motion.button>
+          </form>
+
+          {/* Thank you msg */}
+          {submittedFooter && (
+            <motion.p
+              initial={{ opacity: 0, y: 8 }}
+              animate={{ opacity: 1, y: 0 }}
+              className="text-[#1cc7ac] text-center text-xs font-semibold mt-3"
+            >
+              Thank you! We will contact you shortly…
+            </motion.p>
+          )}
+        </motion.div>
       </div>
-    </footer>
+
+      {/* COPYRIGHT */}
+      <motion.p
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
+        transition={{ duration: 1 }}
+        className="text-center text-[#86e6d6] text-[11px] mt-8"
+      >
+        © {year} Global Vision UAE - All Rights Reserved
+      </motion.p>
+    </motion.footer>
   );
 }

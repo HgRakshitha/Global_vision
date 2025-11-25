@@ -104,7 +104,7 @@ export default function LeadFormTop({ removeImage = false }) {
           {/* Floating CTA Icons */}
           <div className="absolute -top-9 right-6 flex gap-3 z-30">
             <motion.a
-              href="https://wa.me/+9714 579 3444"
+              href="https://wa.me/971504193507"
               target="_blank"
               rel="noreferrer"
               className="w-12 h-12 flex items-center justify-center rounded-full bg-[#25D366] 

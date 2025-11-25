@@ -4,19 +4,21 @@ export default function GMap() {
   return (
     <div
       className="relative rounded-2xl overflow-hidden
-      bg-[rgba(18,52,71,0.55)]
-      border border-[rgba(144,224,255,0.35)]
-      backdrop-blur-xl shadow-[0_0_25px_rgba(0,180,255,0.25)]
-      p-5"
+                 bg-[#0A2235]/90
+                 border border-[rgba(95,229,204,0.35)]
+                 backdrop-blur-xl shadow-[0_0_25px_rgba(5,22,37,0.9)]
+                 p-5 h-full"
     >
       <div className="flex items-center gap-2 mb-3">
-        <FaMapMarkerAlt className="text-cyan-300 text-lg" />
-        <h3 className="text-lg font-semibold text-cyan-200">
-          Visit Our Office
-        </h3>
+        <FaMapMarkerAlt className="text-[#5FE5CC] text-lg" />
+        <h3 className="text-lg font-semibold text-white">Visit Our Office</h3>
       </div>
 
-      <div className="rounded-xl overflow-hidden border border-[rgba(144,224,255,0.3)] h-[500px]">
+      <div className="text-xs text-[#cfd7df] mb-4">
+        Office 205, Ontario Tower, Business Bay, Dubai · UAE
+      </div>
+
+      <div className="rounded-xl overflow-hidden border border-[rgba(95,229,204,0.35)] h-[420px] bg-[#051625]">
         <iframe
           width="100%"
           height="100%"

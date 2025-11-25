@@ -1,8 +1,5 @@
 import Hero from "./components/Hero";
 import About from "./components/About";
-
-import LeadFormTop from "./components/LeadFormTop";
-import LeadFormBottom from "./components/LeadFormBottom"; // ✅ Added
 import Steps from "./components/Steps";
 import Testimonials from "./components/Testimonials";
 import FAQ from "./components/FAQ";
@@ -18,13 +15,6 @@ export default function App() {
       <section className="section bg-[var(--navy1)]">
         <div className="section-content">
           <About />
-        </div>
-      </section>
-
-      {/* TOP LEAD FORM */}
-      <section className="section bg-[var(--navy1)]">
-        <div className="section-content max-w-3xl mx-auto">
-          <LeadFormTop />
         </div>
       </section>
 
@@ -44,12 +34,6 @@ export default function App() {
       <section className="section bg-[var(--navy4)]">
         <div className="section-content max-w-4xl mx-auto">
           <FAQ />
-        </div>
-      </section>
-
-      <section className="section bg-[var(--navy3)]">
-        <div className="section-content max-w-3xl mx-auto">
-          <LeadFormBottom />
         </div>
       </section>
       <Footer />
