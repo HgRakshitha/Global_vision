@@ -5,7 +5,6 @@ import Testimonials from "./components/Testimonials";
 import FAQ from "./components/FAQ";
 import Footer from "./components/Footer";
 import FloatingContact from "./components/FloatingContact";
-import GMap from "./components/GMap";
 
 export default function App() {
   return (
