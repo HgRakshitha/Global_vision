@@ -206,7 +206,9 @@ export default function Footer() {
               title="Dubai Office Map"
               loading="lazy"
               style={{ border: 0 }}
-              src="https://maps.app.goo.gl/tPSfi52ACSNyduM4A?g_st=aw"
+              allowFullScreen
+              referrerPolicy="no-referrer-when-downgrade"
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3613.979890384827!2d55.259999!3d25.185887!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3e5f690059af41fd%3A0xfc3a86ddcf8649b3!2sOntario%20Tower!5e0!3m2!1sen!2sin!4v1733740000000"
             ></iframe>
           </motion.div>
         </motion.div>
