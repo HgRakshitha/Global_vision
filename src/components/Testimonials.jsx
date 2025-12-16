@@ -6,32 +6,40 @@ import testimonialBg from "../assets/star.jpg";
 export default function Testimonials() {
   const reviews = [
     {
-      name: "Menike Dona",
-      date: "1 September 2025",
-      text: `I was dealing with the institution and the officer assigned for my company is 
-      Miss Vidushi Chaturvedi. Beyond exaggerations, I state that she always provided quick 
-      support and guidance. Her professionalism made the entire process extremely smooth.`,
+      name: "Aida Kalantaryan",
+      date: "2 weeks ago",
+      text: `I had excellent experience with Global Vision Business Hub. They did the whole process to gain my trade license in UAE smooth and free.
+      Fond thanks to the team because of their exceptional support. From start until finish, they were professional, sensitive and genuinely helpful. Their guidance made a big difference, and I always felt me in good hands.`,
       short:
-        "I was dealing with the institution… Miss Vidushi helped me a lot…",
-      initial: "M",
-      rating: 5,
-      color: "from-[#16d3b5] to-[#159E91]",
-    },
-    {
-      name: "Rohit Verma",
-      date: "3 September 2025",
-      text: `Amazing experience! The team handled everything—from trade license to banking—with speed and clarity.`,
-      short: "Amazing experience! Everything was handled smoothly…",
-      initial: "R",
+        "Excellent experience with Global Vision… very professional and helpful…",
+      initial: "A",
       rating: 5,
       color: "from-[#3a7bd5] to-[#00d2ff]",
     },
     {
-      name: "Aisha Khan",
-      date: "5 September 2025",
-      text: `The consultants were extremely cooperative. They helped me with PRO services and the visa process.`,
-      short: "The consultants were extremely cooperative and helpful…",
-      initial: "A",
+      name: "Kasif Shaikh",
+      date: "4 weeks ago",
+      text: `Global Vision is an excellent partner with which are loved to work.
+      Very structured, oriented to results, helpful, proactive, intelligent and always had to help! So only some hours after sending my first application, already received a response. The representative of the company was a very professional.
+      It leaned us at all times and always it was available, even during a weekend.
+      It is a pleasure and an honor for me work with them, since I value the professionalism and the toil.`,
+      short:
+        "Global Vision is an excellent partner… very structured and proactive…",
+      initial: "K",
+      rating: 5,
+      color: "from-[#16d3b5] to-[#159E91]",
+    },
+    {
+      name: "Mohsin Shaikh",
+      date: "5 weeks ago",
+      text: `I had a great experience with Global Vision Business Hub while setting up my business in the UAE. They handled everything from company registration to getting my Emirates ID and visa with complete professionalism and transparency. The entire process was smooth, well organized and completed much faster than I expected.
+
+      What I appreciated most was their honesty and clarity about the procedures and costs no hidden charges, just straightforward and reasonable pricing. The team was always available to answer my questions and guide me through every step.
+
+      I highly recommend Global Vision Business Hub to anyone looking to start a business in the UAE. They truly make the process stress free and efficient!`,
+      short:
+        "Great experience with Global Vision… very honest, clear and fast…",
+      initial: "M",
       rating: 5,
       color: "from-[#ff9966] to-[#ff5e62]",
     },
@@ -42,46 +50,24 @@ export default function Testimonials() {
 
   return (
     <section id="testimonials" className="relative py-16 px-6 overflow-hidden">
-      {/* ⭐ Animated Background (Parallax + Zoom) */}
+      {/* ⭐ Animated Background */}
       <motion.img
         src={testimonialBg}
         alt="Testimonials Background"
         className="absolute inset-0 w-full h-full object-cover opacity-80"
-        animate={{
-          scale: [1, 1.07, 1],
-          y: [-20, 20, -20],
-        }}
-        transition={{
-          duration: 18,
-          repeat: Infinity,
-          ease: "easeInOut",
-        }}
+        animate={{ scale: [1, 1.07, 1], y: [-20, 20, -20] }}
+        transition={{ duration: 18, repeat: Infinity, ease: "easeInOut" }}
       />
 
-      {/* 🌟 Soft moving gradient shine overlay */}
-      <motion.div
-        className="absolute inset-0 bg-gradient-to-br from-[#0a3f33]/40 via-transparent to-[#0a3f33]/40"
-        animate={{
-          backgroundPosition: ["0% 0%", "100% 100%", "0% 0%"],
-        }}
-        transition={{
-          duration: 16,
-          repeat: Infinity,
-          ease: "linear",
-        }}
-        style={{ backgroundSize: "300% 300%" }}
-      ></motion.div>
-
-      {/* Dark Overlay to keep text readable */}
+      {/* Overlay */}
       <div className="absolute inset-0 bg-[#0a3f33]/60"></div>
 
-      {/* Floating Glows */}
+      {/* Glows */}
       <motion.div
         animate={{ y: [-20, 20, -20], opacity: [0.5, 0.7, 0.5] }}
         transition={{ duration: 12, repeat: Infinity }}
         className="absolute left-10 top-10 w-64 h-64 bg-[#159E91]/30 rounded-full blur-[130px]"
       />
-
       <motion.div
         animate={{ y: [20, -20, 20], opacity: [0.5, 0.7, 0.5] }}
         transition={{ duration: 12, repeat: Infinity }}
@@ -107,16 +93,13 @@ export default function Testimonials() {
             initial={{ opacity: 0, y: 35 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            whileHover={{
-              scale: 1.07,
-              y: -6,
-              boxShadow: "0 22px 55px rgba(21,158,145,0.45)",
-            }}
+            whileHover={{ scale: 1.07, y: -6 }}
             transition={{ duration: 0.45 }}
             className="rounded-2xl p-7 bg-white/90 backdrop-blur-md 
-                       border border-[#159E91]/30 shadow-[0_14px_40px_rgba(0,0,0,0.35)]
+                       border border-[#159E91]/30 shadow-[0_14px_40px_rgba(0,0,0,0.35)] 
                        transition-all"
           >
+            {/* Header */}
             <div className="flex justify-between items-start mb-4">
               <div className="flex items-center gap-3">
                 <div
@@ -141,6 +124,7 @@ export default function Testimonials() {
               />
             </div>
 
+            {/* Stars */}
             <div className="flex items-center gap-2 mb-3">
               {[...Array(r.rating)].map((_, idx) => (
                 <FaStar key={idx} className="text-yellow-400 text-sm" />
@@ -148,6 +132,7 @@ export default function Testimonials() {
               <FaCheckCircle className="text-[#159E91] text-sm" />
             </div>
 
+            {/* Text */}
             <p className="text-gray-700 text-sm leading-relaxed mb-3">
               {openIndex === i ? r.text : r.short}
             </p>

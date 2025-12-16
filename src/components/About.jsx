@@ -4,19 +4,41 @@ import bgImg from "../assets/business-to-business.png";
 export default function About() {
   const pkgs = [
     {
-      title: "Free Zone License",
+      title: "Freezone Business License – From AED 4,888",
+      price: "AED 4,888",
+      bullets: [
+        "Business License",
+        "Unlimited Shareholders",
+        "Memorandum of Association (MoA)",
+        "Bank Account Assistance",
+        "5–10 Mix-and-Match Activities",
+        "Commercial Registry and Lease Agreement",
+      ],
+    },
+    {
+      title: "Freezone Company Setup – From AED 10,800",
       price: "AED 10,800",
-      bullets: ["Trade license", "1 Visa", "Bank assistance", "PRO services"],
+      bullets: [
+        "Business License",
+        "10 Mix-and-Match Activities",
+        "Establishment Card",
+        "Residence Visa",
+        "Emirates ID",
+        "Bank Account Assistance",
+      ],
     },
     {
-      title: "Mainland License",
-      price: "AED 14,500",
-      bullets: ["UAE-wide operation", "Government approvals", "Visa support"],
-    },
-    {
-      title: "Offshore License",
-      price: "AED 9,999",
-      bullets: ["International operations", "Privacy", "Tax-friendly"],
+      title: "Mainland Business Setup – From AED 14,999",
+      price: "AED 14,999",
+      bullets: [
+        "Professional License",
+        "Establishment Card",
+        "100% Ownership",
+        "Local Sponsor",
+        "Residence Visa",
+        "Emirates ID",
+        "Bank Account Assistance",
+      ],
     },
   ];
 
@@ -35,30 +57,26 @@ export default function About() {
           repeatType: "reverse",
         }}
       />
+
       <motion.div
         className="absolute inset-0 bg-[#f4fffb]/60 backdrop-blur-[2px]"
-        animate={{
-          opacity: [0.6, 0.72, 0.6],
-          x: [-10, 10, -10],
-          y: [-10, 10, -10],
-        }}
-        transition={{
-          duration: 12,
-          repeat: Infinity,
-          ease: "easeInOut",
-        }}
+        animate={{ opacity: [0.6, 0.72, 0.6] }}
+        transition={{ duration: 12, repeat: Infinity }}
       />
+
+      {/* Glows */}
       <motion.div
         animate={{ y: [-20, 20, -20] }}
         transition={{ duration: 14, repeat: Infinity }}
         className="absolute left-10 top-8 w-60 h-60 bg-[#159E91]/25 blur-[130px] rounded-full"
       />
-
       <motion.div
         animate={{ y: [20, -25, 20] }}
         transition={{ duration: 14, repeat: Infinity }}
         className="absolute right-10 bottom-8 w-72 h-72 bg-[#5fe5cc]/25 blur-[150px] rounded-full"
       />
+
+      {/* Heading */}
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
@@ -74,6 +92,8 @@ export default function About() {
           journey.
         </p>
       </motion.div>
+
+      {/* Packages */}
       <div className="relative z-10 grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
         {pkgs.map((p, i) => (
           <motion.div
@@ -91,13 +111,13 @@ export default function About() {
             className="bg-white/75 backdrop-blur-md p-8 rounded-2xl 
            shadow-[0_12px_30px_rgba(0,0,0,0.15)]
            border border-[#159E91]/40 transition-all 
-           flex flex-col justify-between min-h-[380px]"
+           flex flex-col justify-between min-h-[420px]"
           >
             <div>
-              <h3 className="text-[#063d2e] text-xl font-semibold mb-2">
+              <h3 className="text-[#063d2e] text-lg font-semibold mb-2 leading-snug">
                 {p.title}
               </h3>
-              <p className="text-[#159E91] text-lg font-bold mb-4">{p.price}</p>
+              <p className="text-[#159E91] text-xl font-bold mb-4">{p.price}</p>
 
               <ul className="text-[#063d2e] text-sm space-y-2 text-left mb-6">
                 {p.bullets.map((b, idx) => (
@@ -108,6 +128,7 @@ export default function About() {
               </ul>
             </div>
 
+            {/* CTA */}
             <a
               href="#lead-form-hero"
               className="mt-auto inline-block bg-[#159E91] text-white font-bold 

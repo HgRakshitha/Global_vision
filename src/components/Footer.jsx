@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import logo from "../assets/logo.webp";
+import logo from "../assets/GV WHITE.png";
 import {
   FaPhone,
   FaWhatsapp,
@@ -19,7 +19,48 @@ export default function Footer() {
 
   const [selectedPlan, setSelectedPlan] = useState("");
   const [submittedFooter, setSubmittedFooter] = useState(false);
+
+  const [footerName, setFooterName] = useState("");
+  const [footerEmail, setFooterEmail] = useState("");
+  const [footerPhone, setFooterPhone] = useState("");
+  const [footerBusiness, setFooterBusiness] = useState("");
+
   const year = new Date().getFullYear();
+
+  const handleFooterSubmit = async (e) => {
+    e.preventDefault();
+    setSubmittedFooter(true);
+    try {
+      const res = await fetch("http://localhost:5000/api/leads", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          fullName: footerName,
+          email: footerEmail,
+          phone: footerPhone,
+          business: footerBusiness,
+          plan: selectedPlan,
+          source: "footer",
+        }),
+      });
+
+      if (res.ok) {
+        // RESET FIELDS
+        setFooterName("");
+        setFooterEmail("");
+        setFooterPhone("");
+        setFooterBusiness("");
+        setSelectedPlan("");
+
+        // auto-hide message
+        setTimeout(() => setSubmittedFooter(false), 3000);
+      }
+    } catch (err) {
+      console.error("Footer lead failed:", err);
+    }
+  };
 
   return (
     <motion.footer
@@ -28,7 +69,6 @@ export default function Footer() {
       transition={{ duration: 1 }}
       className="relative bg-[#051a16] pt-16 pb-10 border-t border-[#0b463b] overflow-hidden"
     >
-      {/* Floating Animated Glows */}
       <motion.div
         animate={{ y: [-30, 30, -30], opacity: [0.25, 0.4, 0.25] }}
         transition={{ duration: 12, repeat: Infinity }}
@@ -58,27 +98,43 @@ export default function Footer() {
               transition={{ duration: 0.7 }}
             />
 
-            {[
-              { icon: <FaPhone />, text: "+971 52 193 4887" },
-              { icon: <FaWhatsapp />, text: "+971 50 419 3507 (WhatsApp)" },
-              { icon: <FaEnvelope />, text: "info@globalvisionuae.com" },
-            ].map((c, i) => (
-              <motion.p
-                key={i}
-                whileHover={{ scale: 1.05, x: 4 }}
-                className="flex items-center gap-2 text-[#dff8f2] cursor-default"
-              >
-                <span className="text-[#1cc7ac] text-lg">{c.icon}</span>
-                {c.text}
-              </motion.p>
-            ))}
+            {/* Primary phone updated */}
+            <motion.p
+              whileHover={{ scale: 1.05, x: 4 }}
+              className="flex items-center gap-2 text-[#dff8f2] cursor-default"
+            >
+              <span className="text-[#1cc7ac] text-lg">
+                <FaPhone />
+              </span>
+              +9714 579 3444
+            </motion.p>
+            <motion.p
+              whileHover={{ scale: 1.05, x: 4 }}
+              className="flex items-center gap-2 text-[#dff8f2] cursor-default"
+            >
+              <span className="text-[#1cc7ac] text-lg">
+                <FaPhone />
+              </span>
+              +971 50 419 3507
+            </motion.p>
+
+            <motion.p
+              whileHover={{ scale: 1.05, x: 4 }}
+              className="flex items-center gap-2 text-[#dff8f2] cursor-default"
+            >
+              <span className="text-[#1cc7ac] text-lg">
+                <FaEnvelope />
+              </span>
+              info@globalvisionuae.com
+            </motion.p>
 
             <motion.p
               whileHover={{ scale: 1.03, x: 4 }}
               className="flex items-start gap-2 text-[#dff8f2] leading-snug max-w-[260px]"
             >
               <FaMapMarkerAlt className="text-[#1cc7ac] mt-[2px]" />
-              Office 205, Ontario Tower, Business Bay, Dubai, UAE
+              Ontario Tower-205 Al A'amal St-Business Bay-Dubai-United Arab
+              Emirates
             </motion.p>
           </div>
 
@@ -119,7 +175,6 @@ export default function Footer() {
             ))}
           </div>
         </motion.div>
-
         <motion.div
           variants={fadeUp}
           initial="hidden"
@@ -151,12 +206,10 @@ export default function Footer() {
               title="Dubai Office Map"
               loading="lazy"
               style={{ border: 0 }}
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3609.4258709838493!2d55.2731483150116!3d25.197197783893197!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3e5f43341f48687d%3A0x7f8b302a1a458943!2sDowntown%20Dubai!5e0!3m2!1sen!2sae!4v1686571234567"
+              src="https://maps.app.goo.gl/tPSfi52ACSNyduM4A?g_st=aw"
             ></iframe>
           </motion.div>
         </motion.div>
-
-        {/* FORM COLUMN */}
         <motion.div
           variants={fadeUp}
           initial="hidden"
@@ -173,68 +226,73 @@ export default function Footer() {
             Start Your Business
           </motion.h3>
 
-          <form
-            className="space-y-3"
-            onSubmit={(e) => {
-              e.preventDefault();
-              setSubmittedFooter(true);
+          <form className="space-y-3" onSubmit={handleFooterSubmit}>
+            <motion.input
+              placeholder="Your Name"
+              whileFocus={{ scale: 1.02 }}
+              className="w-full p-2.5 text-xs bg-[#07221d] border border-white text-white rounded-md 
+                         placeholder:text-[#bcefe5] focus:border-white outline-none"
+              value={footerName}
+              onChange={(e) => setFooterName(e.target.value)}
+              required
+            />
+            <motion.input
+              placeholder="Your Email"
+              type="email"
+              whileFocus={{ scale: 1.02 }}
+              className="w-full p-2.5 text-xs bg-[#07221d] border border-white text-white rounded-md 
+                         placeholder:text-[#bcefe5] focus:border-white outline-none"
+              value={footerEmail}
+              onChange={(e) => setFooterEmail(e.target.value)}
+              required
+            />
+            <motion.input
+              placeholder="Your Phone"
+              whileFocus={{ scale: 1.02 }}
+              className="w-full p-2.5 text-xs bg-[#07221d] border border-white text-white rounded-md 
+                         placeholder:text-[#bcefe5] focus:border-white outline-none"
+              value={footerPhone}
+              onChange={(e) => setFooterPhone(e.target.value)}
+              required
+            />
+            <motion.input
+              placeholder="What business do you want to start?"
+              whileFocus={{ scale: 1.02 }}
+              className="w-full p-2.5 text-xs bg-[#07221d] border border-white text-white rounded-md 
+                         placeholder:text-[#bcefe5] focus:border-white outline-none"
+              value={footerBusiness}
+              onChange={(e) => setFooterBusiness(e.target.value)}
+              required
+            />
 
-              setTimeout(() => {
-                window.open(
-                  "https://wa.me/971504193507",
-                  "_blank",
-                  "noreferrer"
-                );
-              }, 2000);
-            }}
-          >
-            {/* Inputs */}
-            {[
-              "Your Name",
-              "Your Email",
-              "Your Phone",
-              "What business do you want to start?",
-            ].map((ph, i) => (
-              <motion.input
-                key={i}
-                placeholder={ph}
-                whileFocus={{ scale: 1.02 }}
-                className="w-full p-2.5 text-xs bg-[#07221d] border border-white text-white rounded-md 
-                           placeholder:text-[#bcefe5] focus:border-white outline-none"
-              />
-            ))}
+            <label className="text-[11px] text-[#dff8f2] font-medium block mt-1">
+              When are you planning to set up your business?
+            </label>
 
-            {/* Time Options */}
-            <div className="grid grid-cols-3 gap-2">
-              {["Immediately", "1 Month", "Later"].map((label) => (
-                <motion.button
-                  key={label}
-                  type="button"
-                  whileHover={{ scale: 1.07 }}
-                  onClick={() => setSelectedPlan(label)}
-                  className={`p-2 text-[10px] rounded-md border transition 
-                    ${
-                      selectedPlan === label
-                        ? "bg-[#1cc7ac] text-white border-white"
-                        : "bg-[#07221d] text-white border-white"
-                    }`}
-                >
-                  {label}
-                </motion.button>
-              ))}
-            </div>
+            <select
+              className="w-full p-2.5 text-xs bg-[#07221d] border border-white text-white rounded-md 
+                         focus:border-white outline-none"
+              value={selectedPlan}
+              onChange={(e) => setSelectedPlan(e.target.value)}
+              required
+            >
+              <option value="">Select an option</option>
+              <option value="Immediately">Immediately</option>
+              <option value="1 Month">Within 1 month</option>
+              <option value="Later">Later</option>
+            </select>
 
             {/* Submit */}
             <motion.button
+              type="submit"
               whileHover={{ scale: 1.08 }}
               className="w-full py-2.5 bg-[#1cc7ac] text-white font-bold text-xs rounded-md 
                          shadow-lg hover:bg-[#19b49a] hover:shadow-[0_0_20px_#1cc7ac]"
             >
-              SUBMIT
+              Get a Free Consultation
             </motion.button>
           </form>
 
-          {/* Thank you msg */}
           {submittedFooter && (
             <motion.p
               initial={{ opacity: 0, y: 8 }}
